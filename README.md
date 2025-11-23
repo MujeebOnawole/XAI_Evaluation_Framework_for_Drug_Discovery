@@ -6,7 +6,7 @@ A comprehensive framework for training and evaluating explainable AI (XAI) metho
 
 This project addresses a critical challenge in AI-driven drug discovery: **how do we evaluate whether model explanations are trustworthy?** The framework implements:
 
-- **Three ML Model Architectures**: CNN (SMILES-based), Random Forest (descriptor-based), and RGCN (graph-based)
+- **Three ML Model Architectures**:  Random Forest (fragment-based funtional group),CNN (SMILES-based), and RGCN (graph-based)
 - **Hierarchical XAI Evaluation**: Four-tier framework (Scaffold Recognition, Model Independence, Context Sensitivity, Internal Consistency)
 - **Activity Cliff Analysis**: Methods for analyzing structure-activity relationships and molecular activity cliffs
 - **Pharmacophore Validation**: Tools for validating explanations against known pharmacophores
