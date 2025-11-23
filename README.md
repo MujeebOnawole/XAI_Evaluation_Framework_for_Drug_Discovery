@@ -50,9 +50,9 @@ XAI_Evaluation_Framework_for_Drug_Discovery/
 │
 └── XAI_evaluation_Framework_scripts/   # XAI evaluation framework
     ├── evaluate_SR.py                 # Tier 1: Scaffold Recognition
-    ├── evaluate_MI.py                 # Tier 2: Model Independence
-    ├── evaluate_CS.py                 # Tier 3: Context Sensitivity
-    ├── evaluate_IC.py                 # Tier 4: Internal Consistency
+    ├── evaluate_CS.py                 # Tier 2: Context Sensitivity
+    ├── evaluate_IC.py                 # Tier 3: Internal Consistency
+    ├── evaluate_MI.py                 # Tier 4: Model Independence        
     └── README.md                      # Framework documentation
 ```
 
@@ -166,9 +166,9 @@ cd XAI_evaluation_Framework_scripts
 
 # Run all evaluations in order
 python evaluate_SR.py  # Tier 1: Scaffold Recognition
-python evaluate_MI.py  # Tier 2: Model Independence
-python evaluate_CS.py  # Tier 3: Context Sensitivity
-python evaluate_IC.py  # Tier 4: Internal Consistency
+python evaluate_CS.py  # Tier 2: Context Sensitivity
+python evaluate_IC.py  # Tier 3: Internal Consistency
+python evaluate_MI.py  # Tier 4: Model Independence
 ```
 
 ## 📊 Key Features
