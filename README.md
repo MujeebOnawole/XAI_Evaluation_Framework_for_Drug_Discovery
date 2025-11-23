@@ -2,11 +2,14 @@
 
 A comprehensive framework for training and evaluating explainable AI (XAI) methods in drug discovery using multiple machine learning architectures. This repository implements three distinct model architectures (CNN, Random Forest, and RGCN) and provides a hierarchical four-tier evaluation framework for assessing the quality and reliability of their explanations.
 
+## Dataset
+ChEMBL v34 source with 43,777 unique compounds against Staphylococcus aureus, MIC classification (active ≤ 64 µg/mL vs inactive > 64 µg/mL), 600 molecular pairs (300 activity cliffs and 300 non-cliffs), balanced across three antibiotic classes (100 pairs each): beta-lactams, fluoroquinolones, and oxazolidinones.
+
 ## 🎯 Overview
 
 This project addresses a critical challenge in AI-driven drug discovery: **how do we evaluate whether model explanations are trustworthy?** The framework implements:
 
-- **Three ML Model Architectures**: CNN (SMILES-based), Random Forest (descriptor-based), and RGCN (graph-based)
+- **Three ML Model Architectures**: Random Forest (fragment-based- functional groups), CNN (SMILES-based), and RGCN (graph-based)
 - **Hierarchical XAI Evaluation**: Four-tier framework (Scaffold Recognition, Model Independence, Context Sensitivity, Internal Consistency)
 - **Activity Cliff Analysis**: Methods for analyzing structure-activity relationships and molecular activity cliffs
 - **Pharmacophore Validation**: Tools for validating explanations against known pharmacophores
