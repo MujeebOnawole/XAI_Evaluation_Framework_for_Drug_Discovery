@@ -1,0 +1,64 @@
+{
+    "models": [
+        {
+            "cv": 1,
+            "fold": 5,
+            "init": 1,
+            "metrics": {
+                "auc": 0.8690890040583292,
+                "tpr": 0.0,
+                "tnr": 0.0,
+                "matthews_corrcoef": 0.5522532062214832,
+                "average_precision": 0.9241465010603448
+            }
+        },
+        {
+            "cv": 2,
+            "fold": 5,
+            "init": 1,
+            "metrics": {
+                "auc": 0.86691705863485,
+                "tpr": 0.0,
+                "tnr": 0.0,
+                "matthews_corrcoef": 0.5375642803210785,
+                "average_precision": 0.923080789333647
+            }
+        },
+        {
+            "cv": 3,
+            "fold": 1,
+            "init": 1,
+            "metrics": {
+                "auc": 0.8666436611221887,
+                "tpr": 0.0,
+                "tnr": 0.0,
+                "matthews_corrcoef": 0.5471676703047235,
+                "average_precision": 0.9225717379856919
+            }
+        },
+        {
+            "cv": 4,
+            "fold": 3,
+            "init": 1,
+            "metrics": {
+                "auc": 0.8644640393106651,
+                "tpr": 0.0,
+                "tnr": 0.0,
+                "matthews_corrcoef": 0.5507402550447631,
+                "average_precision": 0.9201647615685361
+            }
+        },
+        {
+            "cv": 5,
+            "fold": 4,
+            "init": 1,
+            "metrics": {
+                "auc": 0.8654173286075126,
+                "tpr": 0.0,
+                "tnr": 0.0,
+                "matthews_corrcoef": 0.5296175754989398,
+                "average_precision": 0.9229131565941885
+            }
+        }
+    ]
+}
