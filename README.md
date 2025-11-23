@@ -21,7 +21,7 @@ XAI_Evaluation_Framework_for_Drug_Discovery/
 │   ├── data_preprocessing.py          # SMILES preprocessing
 │   ├── cross_validation.py            # Cross-validation framework
 │   ├── hyperparameter_opt.py          # Hyperparameter optimization
-│   ├── cnn_xai_activity_pairs.py      # XAI analysis (Integrated Gradients)
+│   ├── cnn_xai_activity_pairs.py      # XAI analysis (occlusion-token masking)
 │   ├── CNN_Visualizer.ipynb           # Visualization notebook
 │   └── README.md                      # CNN-specific documentation
 │
@@ -39,7 +39,7 @@ XAI_Evaluation_Framework_for_Drug_Discovery/
 │   ├── build_data.py                  # Graph construction
 │   ├── data_module.py                 # PyTorch Lightning data module
 │   ├── config.py                      # Model configuration
-│   ├── rgcn_xai_activity_pairs.py     # XAI analysis (occlusion-based)
+│   ├── rgcn_xai_activity_pairs.py     # XAI analysis (occlusion-Substructure masking)
 │   ├── RGCN_Visualizer.ipynb          # Visualization notebook
 │   └── README.md                      # RGCN-specific documentation
 │
@@ -56,7 +56,7 @@ XAI_Evaluation_Framework_for_Drug_Discovery/
 ### 1. CNN Model (Convolutional Neural Network)
 - **Input**: SMILES strings (text-based molecular representation)
 - **Architecture**: 1D CNN with token-level processing
-- **XAI Method**: Integrated Gradients (IG)
+- **XAI Method**: Occlusion based Token masking
 - **Key Features**:
   - SMILES tokenization with configurable mapping modes
   - GPU-accelerated training with PyTorch Lightning
@@ -122,14 +122,31 @@ The framework evaluates XAI methods across **four hierarchical tiers**, each add
 
 **Passing Criteria**: ≥90% complete recognition
 
-**Results**:
-| Model | Complete Recognition | Status |
-|-------|---------------------|--------|
-| RGCN  | 86-99% | ✅ PASS |
-| CNN   | 53-89% | ❌ FAIL |
-| RF    | 94-100% | ✅ PASS |
 
-### Tier 2: Model Independence (MI) - Deployment
+
+
+
+### Tier 2: Context Sensitivity (CS) - Validation
+**Purpose**: Does the method recognize that identical scaffolds contribute differently in different contexts?
+
+**Metrics**:
+- Directionality (35%): Paired t-test
+- Context Awareness (35%): Levene's test
+- Discrimination (30%): Binomial test
+
+
+
+### Tier 3: Internal Consistency (IC) - Confidence
+**Purpose**: Do explanations align with predictions?
+
+**Metric**: Sign matching between net attribution and prediction direction
+- Active prediction (≥0.5): mean(attributions) > 0
+- Inactive prediction (<0.5): mean(attributions) < 0
+
+
+
+
+### Tier 4: Model Independence (MI) - Deployment
 **Purpose**: Are explanations consistent across different model instances?
 
 **Metrics**:
@@ -144,36 +161,6 @@ The framework evaluates XAI methods across **four hierarchical tiers**, each add
 | RGCN  | 0.709 | ⚠️ Moderate |
 | CNN   | 0.828 | ⚠️ Good |
 | RF    | 0.706 | ⚠️ Moderate |
-
-### Tier 3: Context Sensitivity (CS) - Validation
-**Purpose**: Does the method recognize that identical scaffolds contribute differently in different contexts?
-
-**Metrics**:
-- Directionality (35%): Paired t-test
-- Context Awareness (35%): Levene's test
-- Discrimination (30%): Binomial test
-
-**Results**:
-| Model | Combined CS | Rank |
-|-------|-------------|------|
-| RGCN  | 0.844 | 🥇 1st |
-| RF    | 0.794 | 🥈 2nd |
-| CNN   | 0.000 (official) | 🥉 3rd |
-
-### Tier 4: Internal Consistency (IC) - Confidence
-**Purpose**: Do explanations align with predictions?
-
-**Metric**: Sign matching between net attribution and prediction direction
-- Active prediction (≥0.5): mean(attributions) > 0
-- Inactive prediction (<0.5): mean(attributions) < 0
-
-**Results**:
-| Model | Alignment Rate | Status |
-|-------|---------------|--------|
-| RGCN  | 95.8% | Excellent |
-| CNN   | 91.8% | Good |
-| RF    | 82.4% | Acceptable |
-
 ### Running the Complete Framework
 
 ```bash
@@ -181,9 +168,9 @@ cd XAI_evaluation_Framework_scripts
 
 # Run all evaluations in order
 python evaluate_SR.py  # Tier 1: Scaffold Recognition
-python evaluate_MI.py  # Tier 2: Model Independence
-python evaluate_CS.py  # Tier 3: Context Sensitivity
-python evaluate_IC.py  # Tier 4: Internal Consistency
+python evaluate_CS.py  # Tier 2: Context Sensitivity
+python evaluate_IC.py  # Tier 3: Internal Consistency
+python evaluate_MI.py  # Tier 4: Model Independence
 ```
 
 ## 📊 Key Features
@@ -199,9 +186,9 @@ python evaluate_IC.py  # Tier 4: Internal Consistency
 - Coverage analysis across drug classes
 
 ### XAI Methods Integration
-- **Integrated Gradients** (CNN): Gradient-based attribution
+- **Occlusion-based Token Masking** (CNN): Gradient-based attribution
 - **TreeSHAP** (RF): Shapley values for tree ensembles
-- **Occlusion-based** (RGCN): Perturbation-based attribution
+- **Occlusion-based Substructure Masking** (RGCN): Perturbation-based attribution
 
 ## 🔧 Installation
 
@@ -280,13 +267,13 @@ python RGCN_CV.py
 
 ### Generating Explanations
 
-**CNN (Integrated Gradients)**:
+**CNN (Occlusion based Token masking)**:
 ```bash
 cd CNN_model
 python cnn_xai_activity_pairs.py \
     --full \
     --out_csv outputs/cnn_xai_results.csv \
-    --ig_steps 64
+
 ```
 
 **Random Forest (TreeSHAP)**:
@@ -308,19 +295,7 @@ Each model includes a Jupyter notebook for visualization:
 - `RF_model/RF_Visualizer.ipynb`
 - `RGCN_model/RGCN_Visualizer.ipynb`
 
-## 📈 Performance Comparison
 
-| Aspect | RGCN | CNN | RF |
-|--------|------|-----|-----|
-| **Input Type** | Molecular graphs | SMILES strings | Descriptors |
-| **XAI Method** | Occlusion | Integrated Gradients | TreeSHAP |
-| **Scaffold Recognition** | 86-99% ✅ | 53-89% ❌ | 94-100% ✅ |
-| **Model Independence** | 0.709 ⚠️ | 0.828 ⚠️ | 0.706 ⚠️ |
-| **Context Sensitivity** | 0.844 🥇 | 0.000 🥉 | 0.794 🥈 |
-| **Internal Consistency** | 95.8% 🥇 | 91.8% 🥈 | 82.4% 🥉 |
-| **Training Speed** | Moderate | Fast | Very Fast |
-| **Inference Speed** | Moderate | Fast | Very Fast |
-| **Interpretability** | High (graphs) | Moderate (tokens) | High (features) |
 
 ## 🧪 Drug Classes Evaluated
 
@@ -381,7 +356,7 @@ This project is available for academic and research purposes. Please contact the
 
 ## 🙏 Acknowledgments
 
-This work implements state-of-the-art XAI methods for drug discovery, building on research in:
+This work implements t XAI methods for drug discovery, building on research in:
 - Explainable AI (XAI)
 - Molecular machine learning
 - Structure-activity relationship (SAR) analysis
