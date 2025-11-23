@@ -1,12 +1,12 @@
 # XAI Evaluation Framework for Drug Discovery
 
 ## Overview
-This framework aims to support the application of explainable artificial intelligence (XAI) methods in drug discovery.
+A framework for evaluating explainable AI (XAI) methods in drug discovery using multiple machine learning architectures. This repository implements three distinct model architectures (CNN, Random Forest, and RGCN) and provides a hierarchical four-tier evaluation framework for assessing the quality and reliability of their explanations.  
 
 ## Dataset
 ChEMBL v34 source with 43,777 unique compounds against Staphylococcus aureus, MIC classification (active ≤ 64 µg/mL vs inactive > 64 µg/mL), 600 molecular pairs (300 activity cliffs and 300 non-cliffs), balanced across three antibiotic classes (100 pairs each): beta-lactams, fluoroquinolones, and oxazolidinones.
 
-## 🎯 Overview
+
 
 ## Model Architectures
 1. Random Forest (simplest)
