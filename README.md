@@ -95,8 +95,7 @@ python RF_XAI_activity_pairs.py  # Generate explanations
 
 ### 3. RGCN Model (Relational Graph Convolutional Network)
 - **Input**: Molecular graphs with typed edges
-- **Architecture**: 3-edge RGCN (SINGLE, DOUBLE, TRIPLE bonds)
-- **XAI Method**: Occlusion-based attribution
+- **XAI Method**: Occlusion-based attribution (Substructure Masking)
 - **Key Features**:
   - Graph-based molecular representation
   - Intentional 3-edge design for interpretability
@@ -158,12 +157,7 @@ The framework evaluates XAI methods across **four hierarchical tiers**, each add
 
 **Passing Criteria**: ≥0.95 for deployment, ≥0.70 acceptable for research
 
-**Results**:
-| Model | MI Score | Status |
-|-------|----------|--------|
-| RGCN  | 0.709 | ⚠️ Moderate |
-| CNN   | 0.828 | ⚠️ Good |
-| RF    | 0.706 | ⚠️ Moderate |
+
 ### Running the Complete Framework
 
 ```bash
@@ -285,7 +279,7 @@ cd RF_model
 python RF_XAI_activity_pairs.py
 ```
 
-**RGCN (Occlusion-based)**:
+**RGCN (Occlusion-based Substructure masking)**:
 ```bash
 cd RGCN_model
 python rgcn_xai_activity_pairs.py
@@ -297,6 +291,7 @@ Each model includes a Jupyter notebook for visualization:
 - `CNN_model/CNN_Visualizer.ipynb`
 - `RF_model/RF_Visualizer.ipynb`
 - `RGCN_model/RGCN_Visualizer.ipynb`
+- To download model checkpoints, visit https://zenodo.org/records/17678160
 
 
 
