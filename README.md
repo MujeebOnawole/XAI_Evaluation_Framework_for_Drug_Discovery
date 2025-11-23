@@ -1,26 +1,49 @@
-# README
+# XAI Evaluation Framework for Drug Discovery
 
 ## Overview
+This framework aims to support the application of explainable artificial intelligence (XAI) methods in drug discovery.
 
-This project aims to evaluate the effectiveness of various machine learning models in predicting antibiotic resistance.
-
-### Dataset
-- The dataset consists of compounds from ChEMBL v34 evaluated for activity against Staphylococcus aureus.
-- Compounds classified by minimum inhibitory concentration (MIC): active (MIC ≤ 64 µg/mL) or inactive (MIC > 64 µg/mL).
-- Total of 43,777 unique chemical compounds.
-- Evaluations performed on 600 molecular pairs: 300 activity cliff pairs and 300 non-cliff pairs.
-- Balanced across three antibiotic classes (100 pairs each): beta-lactams, fluoroquinolones, and oxazolidinones.
+## Dataset
+ChEMBL v34 source with 43,777 unique compounds against Staphylococcus aureus, MIC classification (active ≤ 64 µg/mL vs inactive > 64 µg/mL), 600 molecular pairs (300 activity cliffs and 300 non-cliffs), balanced across three antibiotic classes (100 pairs each): beta-lactams, fluoroquinolones, and oxazolidinones.
 
 ## Model Architectures
-- Random Forest (RF)
-- CNN (Convolutional Neural Network)
-- RGCN (Relational Graph Convolutional Network)
+1. Random Forest (simplest)
+2. CNN (moderate)
+3. RGCN (most complex)
 
-## Drug Classes Evaluated
-- Beta-lactams
-- Fluoroquinolones
-- Oxazolidinones
+## Drug Classes
+1. Beta-lactams
+2. Fluoroquinolones
+3. Oxazolidinones
 
-## Conclusion
+## Evaluation Tiers
+1. Tier 1: Basic Metrics
+2. Tier 2: Statistical Significance Tests
+3. Tier 3: Interpretability Analysis
+4. Tier 4: End-user Evaluation
 
-These findings indicate strong potentials in model evaluation for drug discovery.
+## Installation Instructions
+To install the framework, use the following commands:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage Examples
+Below are examples of how to use the framework:
+
+```python
+import xai_framework
+# Example usage code here
+```
+
+## Repository Structure
+- `xai_framework/` - Contains the core framework modules.
+- `tests/` - Includes unit tests for validation.
+
+## Citations
+If you use this framework for your research, please cite:
+> Author, Year. Title. Journal Name.
+
+## Acknowledgments
+We acknowledge the contributions of ...
