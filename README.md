@@ -155,12 +155,7 @@ The framework evaluates XAI methods across **four hierarchical tiers**, each add
 
 **Passing Criteria**: ≥0.95 for deployment, ≥0.70 acceptable for research
 
-**Results**:
-| Model | MI Score | Status |
-|-------|----------|--------|
-| RGCN  | 0.709 | ⚠️ Moderate |
-| CNN   | 0.828 | ⚠️ Good |
-| RF    | 0.706 | ⚠️ Moderate |
+
 ### Running the Complete Framework
 
 ```bash
