@@ -1,6 +1,6 @@
 # XAI Evaluation Framework for Drug Discovery
 
-A comprehensive framework for training and evaluating explainable AI (XAI) methods in drug discovery using multiple machine learning architectures. This repository implements three distinct model architectures (CNN, Random Forest, and RGCN) and provides a hierarchical four-tier evaluation framework for assessing the quality and reliability of their explanations.
+A comprehensive framework for training and evaluating explainable AI (XAI) methods in drug discovery using multiple machine learning architectures. This repository implements three distinct model architectures (CNN, Random Forest, and RGCN) and provides a hierarchical four-tier evaluation framework for assessing the quality and reliability of their explanations. The models were trained on S.aureus MIC data from ChEMBL. Model checkpoints can be found in https://zenodo.org/records/17104898
 
 ## 🎯 Overview
 
